@@ -20,7 +20,7 @@ class Game:
         # Window's background color
         self._surface.fill((110, 110, 5))
         # Initialize a snake
-        self._snake = Snake(self._surface, 1)
+        self._snake = Snake(self._surface)
         # Draw the snake
         self._snake.draw()
         self._apple = Apple(self._surface)
@@ -120,7 +120,7 @@ class Game:
                 self.reset()
 
             # Snake's speed
-            time.sleep(0.3)
+            time.sleep(self._snake.speed)
 
     def display_score(self):
         font = pygame.font.SysFont('arial', 30)
@@ -129,7 +129,7 @@ class Game:
 
     def reset(self):
         # Recreate a new snake and a new apple
-        self._snake = Snake(self._surface, 1)
+        self._snake = Snake(self._surface)
         self._apple = Apple(self._surface)
 
     @staticmethod

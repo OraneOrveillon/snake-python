@@ -13,7 +13,7 @@ class Apple:
         self._y = constants.SIZE * 3
 
     def draw(self):
-        self._parent_screen.blit(self._image, (self.x, self.y))
+        self._parent_screen.blit(self._image, (self._x, self._y))
         pygame.display.flip()
 
     # TODO Constantes pour longueur, largeur de l'écran et deuxième paramètre de randint (width/SIZE-1 et length/SIZE-1)
