@@ -18,7 +18,7 @@ class Snake:
         self._speed = constants.SNAKE_SPEED
         self.parent_screen = parent_screen
         # Load the image
-        self.block = pygame.image.load("resources/blue-ball.png").convert_alpha()
+        self.block = pygame.image.load("resources/snowball.png").convert_alpha()
         # Initialize the coordinates with arrays -> [528, 528, 528, 528] for length == 4 and SIZE = 48
         self.x = [528] * self._length
         self.y = [384] * self._length

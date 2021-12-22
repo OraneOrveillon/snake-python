@@ -108,6 +108,8 @@ class Game:
         """Regenerate the background at 0,0 position"""
         background = pygame.image.load("resources/background.jpg")
         self._window.blit(background, (0, 0))
+        # Single color background (temporary)
+        self._window.fill((7, 26, 48))
 
     def is_colliding(self, x, y):
         """
@@ -160,5 +162,5 @@ class Game:
         """
         Play a background music with pygame's mixer
         """
-        pygame.mixer.music.load("resources/bg_music_1.mp3")
+        pygame.mixer.music.load("resources/jingle-bells.mp3")
         pygame.mixer.music.play()

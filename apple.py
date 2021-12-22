@@ -13,7 +13,7 @@ class Apple:
         - Initialize it's first coordinates x, y at 0, then move it to a random position with move()
         :param parent_screen: The parent window
         """
-        self._image = pygame.image.load("resources/apple-48x48.jpg").convert_alpha()
+        self._image = pygame.image.load("resources/snowflake.png").convert_alpha()
         self._parent_screen = parent_screen
         # self._x = constants.SNAKE_SIZE * 3
         # self._y = constants.SNAKE_SIZE * 3
