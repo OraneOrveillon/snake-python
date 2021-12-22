@@ -18,45 +18,47 @@ class Snake:
         self.direction = constants.DIRECTIONS[random.randint(0, 3)]
 
     def draw(self):
+        # TODO Changer docstring
         """Draw a snake with x and y coordinates"""
         for i in range(self._length):
             # Draw the image at a position
             self.parent_screen.blit(self.block, (self.x[i], self.y[i]))
         pygame.display.flip()
 
-    def walk(self):
+    def move_up(self):
+        self.direction = constants.DIRECTIONS[0]
 
+    def move_down(self):
+        self.direction = constants.DIRECTIONS[1]
+
+    def move_left(self):
+        self.direction = constants.DIRECTIONS[2]
+
+    def move_right(self):
+        self.direction = constants.DIRECTIONS[3]
+
+    def walk(self):
         for i in range(self._length - 1, 0, -1):
             self.x[i] = self.x[i - 1]
             self.y[i] = self.y[i - 1]
 
         if self.direction == constants.DIRECTIONS[0]:
-            self.y[0] -= constants.SIZE
+            self.y[0] -= constants.SNAKE_SIZE
         if self.direction == constants.DIRECTIONS[1]:
-            self.y[0] += constants.SIZE
+            self.y[0] += constants.SNAKE_SIZE
         if self.direction == constants.DIRECTIONS[2]:
-            self.x[0] -= constants.SIZE
+            self.x[0] -= constants.SNAKE_SIZE
         if self.direction == constants.DIRECTIONS[3]:
-            self.x[0] += constants.SIZE
+            self.x[0] += constants.SNAKE_SIZE
 
         self.draw()
-
-    def move_up(self):
-        self.direction = 'up'
-
-    def move_down(self):
-        self.direction = 'down'
-
-    def move_left(self):
-        self.direction = 'left'
-
-    def move_right(self):
-        self.direction = 'right'
 
     def increase_length(self):
         self._length += 1
         self.x.append(-1)
         self.y.append(-1)
+
+    # ---------- GETTERS / SETTERS SPACE ---------- #
 
     @property
     def length(self):
