@@ -4,6 +4,7 @@ import time
 
 from snake import Snake
 from apple import Apple
+from mixer import Mixer
 import constants
 
 
@@ -18,9 +19,9 @@ class Game:
         - Create and draw an snake and an apple
         """
         pygame.init()
-        pygame.mixer.init()
+        self._mixer = Mixer()
         self._window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
-        self.play_background_music()
+        self._mixer.play_background_music()
         self._snake = Snake(self._window)
         self._snake.draw()
         self._apple = Apple(self._window)
@@ -91,7 +92,7 @@ class Game:
         # If the snake's head is touching the apple
         if self.is_colliding(self._apple.x, self._apple.y):
             # Play the sound corresponding to eating an apple
-            self.play_sound("ding")
+            self._mixer.play_sound("ding")
             # Increasing snake's length and continue moving
             self._snake.increase_length()
             self._apple.move()
@@ -101,7 +102,7 @@ class Game:
         for i in range(1, self._snake.length):
             if self.is_colliding(self._snake.x[i], self._snake.y[i]):
                 # Play the sound corresponding to colliding its own body
-                self.play_sound("crash")
+                self._mixer.play_sound("crash")
                 raise Exception("Collision Occurred")
 
     def render_background(self):
@@ -147,20 +148,3 @@ class Game:
         # Recreate a new snake and a new apple
         self._snake = Snake(self._window)
         self._apple = Apple(self._window)
-
-    @staticmethod
-    def play_sound(sound):
-        """
-        Play a sound with pygame's mixer
-        :param sound: The sound's filename
-        """
-        sound = pygame.mixer.Sound("resources/{}.mp3".format(sound))
-        pygame.mixer.Sound.play(sound)
-
-    @staticmethod
-    def play_background_music():
-        """
-        Play a background music with pygame's mixer
-        """
-        pygame.mixer.music.load("resources/jingle-bells.mp3")
-        pygame.mixer.music.play()
