@@ -3,6 +3,7 @@ import pygame
 
 class Mixer:
     def __init__(self):
+        """Initialize pygame's mixer"""
         pygame.mixer.init()
 
     @staticmethod

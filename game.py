@@ -13,15 +13,15 @@ class Game:
 
     def __init__(self):
         """
-        - Initialize pygame library and the mixer (for sounds and music)
+        - Create a mixer and start playing background music
+        - Initialize pygame library
         - Create the window with its dimensions
-        - Start playing background music
         - Create and draw an snake and an apple
         """
-        pygame.init()
         self._mixer = Mixer()
-        self._window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
         self._mixer.play_background_music()
+        pygame.init()
+        self._window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
         self._snake = Snake(self._window)
         self._snake.draw()
         self._apple = Apple(self._window)
