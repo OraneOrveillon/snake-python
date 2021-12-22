@@ -18,11 +18,10 @@ class Snake:
         self._speed = constants.SNAKE_SPEED
         self.parent_screen = parent_screen
         # Load the image
-        self.block = pygame.image.load("resources/block.jpg").convert()
-        # Initialize the coordinates with arrays -> [480, 480, 480, 480] for length == 4 and SIZE = 40
-        self.x = [480] * self._length
-        self.y = [400] * self._length
-        # The takes a random direction
+        self.block = pygame.image.load("resources/blue-ball.png").convert_alpha()
+        # Initialize the coordinates with arrays -> [528, 528, 528, 528] for length == 4 and SIZE = 48
+        self.x = [528] * self._length
+        self.y = [384] * self._length
         self.direction = constants.DIRECTIONS[random.randint(0, 3)]
 
     def draw(self):
@@ -58,13 +57,13 @@ class Snake:
             self.y[i] = self.y[i - 1]
 
         if self.direction == constants.DIRECTIONS[0]:
-            self.y[0] -= constants.SNAKE_SIZE
+            self.y[0] -= constants.BLOCK_SIZE
         if self.direction == constants.DIRECTIONS[1]:
-            self.y[0] += constants.SNAKE_SIZE
+            self.y[0] += constants.BLOCK_SIZE
         if self.direction == constants.DIRECTIONS[2]:
-            self.x[0] -= constants.SNAKE_SIZE
+            self.x[0] -= constants.BLOCK_SIZE
         if self.direction == constants.DIRECTIONS[3]:
-            self.x[0] += constants.SNAKE_SIZE
+            self.x[0] += constants.BLOCK_SIZE
 
         self.draw()
 

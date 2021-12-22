@@ -13,7 +13,7 @@ class Apple:
         - Initialize it's first coordinates x, y at 0, then move it to a random position with move()
         :param parent_screen: The parent window
         """
-        self._image = pygame.image.load("resources/apple.jpg").convert()
+        self._image = pygame.image.load("resources/apple-48x48.jpg").convert_alpha()
         self._parent_screen = parent_screen
         # self._x = constants.SNAKE_SIZE * 3
         # self._y = constants.SNAKE_SIZE * 3
@@ -28,9 +28,9 @@ class Apple:
     def move(self):
         """Change apple's position randomly on the screen"""
         # Window's width / SIZE - 1 -> 1000 / 40 - 1 = 25
-        self._x = random.randint(1, constants.WINDOW_WIDTH / constants.SNAKE_SIZE -1) * constants.SNAKE_SIZE
+        self._x = random.randint(1, constants.WINDOW_WIDTH / constants.BLOCK_SIZE - 1) * constants.BLOCK_SIZE
         # Window's length / SIZE - 1 -> 800 / 40 - 1 = 20
-        self._y = random.randint(1, constants.WINDOW_LENGTH / constants.SNAKE_SIZE - 1) * constants.SNAKE_SIZE
+        self._y = random.randint(1, constants.WINDOW_LENGTH / constants.BLOCK_SIZE - 1) * constants.BLOCK_SIZE
 
     # ---------- GETTERS / SETTERS SPACE ---------- #
     @property

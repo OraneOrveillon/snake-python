@@ -1,8 +1,8 @@
-"""Window's dimensions"""
-WINDOW_WIDTH = 1000
-WINDOW_LENGTH = 800
-"""The size of one snake's block --> a square of side x"""
-SNAKE_SIZE = 40
+"""Window's dimensions -> HAVE TO BE MULTIPLES OF SNAKE_SIZE"""
+WINDOW_WIDTH = 960
+WINDOW_LENGTH = 816
+"""The size of one snake's block and an apple --> a square of side x"""
+BLOCK_SIZE = 48
 """The snake's move speed"""
 SNAKE_SPEED = 0.1
 """The 4 directions taken by the snake"""

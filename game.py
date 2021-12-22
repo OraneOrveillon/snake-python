@@ -34,7 +34,6 @@ class Game:
         pause = False
 
         while running:
-            # TODO Créer une nouvelle fonction pour ça
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
                     # Closed with escape key
@@ -68,7 +67,6 @@ class Game:
             try:
                 if not pause:
                     self.play()
-            # TODO Enlever l'exception
             except Exception:
                 self.show_game_over()
                 pause = True
@@ -117,8 +115,8 @@ class Game:
         :param y: Object's y coordinate
         :return: True if the snake's head is entering in the object's dimensions
         """
-        if x <= self._snake.x[0] < x + constants.SNAKE_SIZE:
-            if y <= self._snake.y[0] < y + constants.SNAKE_SIZE:
+        if x <= self._snake.x[0] < x + constants.BLOCK_SIZE:
+            if y <= self._snake.y[0] < y + constants.BLOCK_SIZE:
                 return True
         return False
 
