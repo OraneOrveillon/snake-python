@@ -105,6 +105,12 @@ class Game:
                 self._mixer.play_sound("crash")
                 raise Exception("Collision Occurred")
 
+        # If the snake's head is touching a wall -> Game over
+        if (self._snake.x[0] > constants.WINDOW_WIDTH - constants.BLOCK_SIZE or self._snake.x[0] < 0) or \
+                (self._snake.y[0] > constants.WINDOW_LENGTH - constants.BLOCK_SIZE or self._snake.y[0] < 0):
+            self._mixer.play_sound("crash")
+            raise Exception("Collision Occurred")
+
     def render_background(self):
         """Regenerate the background at 0,0 position"""
         background = pygame.image.load("resources/background.jpg")
