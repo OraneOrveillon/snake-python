@@ -2,37 +2,39 @@ import pygame
 from pygame.locals import *
 import time
 
-
 from snake import Snake
 from apple import Apple
 import constants
 
 
 class Game:
+    """Deal with the functional aspects of the game"""
+
     def __init__(self):
+        """
+        - Initialize pygame library and the mixer (for sounds and music)
+        - Create the window with its dimensions
+        - Start playing background music
+        - Create and draw an snake and an apple
+        """
         pygame.init()
-        # Window's dimensions
-        self._surface = pygame.display.set_mode((1000, 800))
-        # Mixer's initialization (for sounds and music)
         pygame.mixer.init()
-        # Start playing the background music
+        self._window = pygame.display.set_mode((1000, 800))
         self.play_background_music()
-        # Window's background color
-        self._surface.fill((110, 110, 5))
-        # Initialize a snake
-        self._snake = Snake(self._surface)
-        # Draw the snake
+        self._snake = Snake(self._window)
         self._snake.draw()
-        self._apple = Apple(self._surface)
+        self._apple = Apple(self._window)
         self._apple.draw()
 
     def run(self):
+        """Keep the game running until the game over state or when the window is closed"""
         # Keep the window running until it is closed
         # Moves the blocks when a direction key is pressed
         running = True
         pause = False
 
         while running:
+            # TODO Créer une nouvelle fonction pour ça
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
                     # Closed with escape key
@@ -66,18 +68,22 @@ class Game:
             try:
                 if not pause:
                     self.play()
+            # TODO Enlever l'exception
             except Exception:
                 self.show_game_over()
                 pause = True
                 self.reset()
 
-            # Snake's speed
+            # Basically the snake's speed
             time.sleep(self._snake.speed)
 
     def play(self):
-        """The snake moves forwards by 1 each time this function is called
-        Called continuously in run()"""
-        # Put the background
+        """
+        The snake moves forwards by 1 and the background is cleared each time this function is called
+        Called continuously in run()
+        Check for snake's collisions :
+            - length++ and move the apple if colliding the apple
+            - game over if colliding its body or a wall"""
         self.render_background()
         self._snake.walk()
         self._apple.draw()
@@ -85,7 +91,7 @@ class Game:
         pygame.display.flip()
 
         # If the snake's head is touching the apple
-        if self.is_collision(self._snake.x[0], self._snake.y[0], self._apple.x, self._apple.y):
+        if self.is_colliding(self._apple.x, self._apple.y):
             # Play the sound corresponding to eating an apple
             self.play_sound("ding")
             # Increasing snake's length and continue moving
@@ -95,54 +101,66 @@ class Game:
         # If the snake's head is touching its body -> Game over
         # Starting at index 1 because the snake cannot collide its ows head
         for i in range(1, self._snake.length):
-            if self.is_collision(self._snake.x[0], self._snake.y[0], self._snake.x[i], self._snake.y[i]):
+            if self.is_colliding(self._snake.x[i], self._snake.y[i]):
                 # Play the sound corresponding to colliding its own body
                 self.play_sound("crash")
                 raise Exception("Collision Occurred")
 
     def render_background(self):
-        bg = pygame.image.load("resources/background.jpg")
-        # Put the background image on the window at 0,0 position
-        self._surface.blit(bg, (0, 0))
+        """Regenerate the background at 0,0 position"""
+        background = pygame.image.load("resources/background.jpg")
+        self._window.blit(background, (0, 0))
 
-    # TODO changer la logique de collision
-    @staticmethod
-    def is_collision(x1, y1, x2, y2):
-        """Check if the snake is eating an apple"""
-        if x2 <= x1 < x2 + constants.SNAKE_SIZE:
-            if y2 <= y1 < y2 + constants.SNAKE_SIZE:
+    def is_colliding(self, x, y):
+        """
+        :param x: Object's x coordinate
+        :param y: Object's y coordinate
+        :return: True if the snake's head is entering in the object's dimensions
+        """
+        if x <= self._snake.x[0] < x + constants.SNAKE_SIZE:
+            if y <= self._snake.y[0] < y + constants.SNAKE_SIZE:
                 return True
         return False
 
     def display_score(self):
+        """Display the actual score on the screen"""
         font = pygame.font.SysFont('arial', 30)
         score = font.render("Score : {}".format(self._snake.length), True, (200, 200, 200))
-        self._surface.blit(score, (800, 10))
+        self._window.blit(score, (800, 10))
 
     def show_game_over(self):
+        """Display the Game Over interface"""
         # Clear the surface
         self.render_background()
         font = pygame.font.SysFont('arial', 30)
         line1 = font.render("Game Over ! Your score is {}".format(self._snake.length), True, (200, 200, 200))
-        self._surface.blit(line1, (200, 300))
+        self._window.blit(line1, (200, 300))
         line2 = font.render("To play the game again press Enter.", True, (220, 220, 220))
-        self._surface.blit(line2, (200, 350))
+        self._window.blit(line2, (200, 350))
         # Update the window
         pygame.display.flip()
         # Stop playing the background music
         pygame.mixer.music.pause()
 
     def reset(self):
+        """Restart the game"""
         # Recreate a new snake and a new apple
-        self._snake = Snake(self._surface)
-        self._apple = Apple(self._surface)
+        self._snake = Snake(self._window)
+        self._apple = Apple(self._window)
 
     @staticmethod
     def play_sound(sound):
+        """
+        Play a sound with pygame's mixer
+        :param sound: The sound's filename
+        """
         sound = pygame.mixer.Sound("resources/{}.mp3".format(sound))
         pygame.mixer.Sound.play(sound)
 
     @staticmethod
     def play_background_music():
+        """
+        Play a background music with pygame's mixer
+        """
         pygame.mixer.music.load("resources/bg_music_1.mp3")
         pygame.mixer.music.play()

@@ -1,4 +1,4 @@
-"""The size of snake's block --> a square of side x"""
+"""The size of one snake's block --> a square of side x"""
 SNAKE_SIZE = 40
 """The snake's move speed"""
 SNAKE_SPEED = 0.1
