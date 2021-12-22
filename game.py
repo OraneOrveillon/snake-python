@@ -19,7 +19,7 @@ class Game:
         """
         pygame.init()
         pygame.mixer.init()
-        self._window = pygame.display.set_mode((1000, 800))
+        self._window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
         self.play_background_music()
         self._snake = Snake(self._window)
         self._snake.draw()
