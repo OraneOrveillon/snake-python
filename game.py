@@ -5,6 +5,7 @@ import time
 from snake import Snake
 from apple import Apple
 from mixer import Mixer
+from text import Text
 import constants
 
 
@@ -119,25 +120,24 @@ class Game:
 
     def display_score(self):
         """Display the actual score on the screen"""
-        font = pygame.font.SysFont('impact', 50)
-        text = font.render("Score : {}".format(self._snake.length), True, (97, 132, 227))
-        text_width = text.get_width()
-        self._window.blit(text, (constants.WINDOW_WIDTH / 2 - text_width / 2, 15))
+        text = Text(self._window, 'impact', 50, "Score : {}".format(self._snake.length), (97, 132, 227))
+        text.display_text((constants.WINDOW_WIDTH / 2 - text.width / 2, 15))
 
     def show_game_over(self):
         """Display the Game Over interface"""
         # Clear the surface
         self.render_background()
-        font = pygame.font.SysFont('impact', 50)
-        game_over_text = font.render("Game Over !", True, (97, 132, 227))
-        game_over_text_width = game_over_text.get_width()
-        self._window.blit(game_over_text, (constants.WINDOW_WIDTH / 2 - game_over_text_width / 2, 300))
-        score_text = font.render("Your score : {}".format(self._snake.length), True, (97, 132, 227))
-        score_text_width = score_text.get_width()
-        self._window.blit(score_text, (constants.WINDOW_WIDTH / 2 - score_text_width / 2, 350))
-        try_again_text = font.render("Press Enter to try again", True, (97, 132, 227))
-        try_again_text_width = try_again_text.get_width()
-        self._window.blit(try_again_text, (constants.WINDOW_WIDTH / 2 - try_again_text_width / 2, 400))
+
+        # Display the 3 texts
+        game_over_text = Text(self._window, 'impact', 50, "Game Over !", (97, 132, 227))
+        game_over_text.display_text((constants.WINDOW_WIDTH / 2 - game_over_text.width / 2, 300))
+
+        score_text = Text(self._window, 'impact', 50, "Your score : {}".format(self._snake.length), (97, 132, 227))
+        score_text.display_text((constants.WINDOW_WIDTH / 2 - score_text.width / 2, 350))
+
+        try_again_text = Text(self._window, 'impact', 50, "Press Enter to try again", (97, 132, 227))
+        try_again_text.display_text((constants.WINDOW_WIDTH / 2 - try_again_text.width / 2, 400))
+
         # Update the window
         pygame.display.flip()
         # Stop playing the background music
