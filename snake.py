@@ -20,6 +20,7 @@ class Snake:
         # Load the image
         self.block = pygame.image.load("resources/snowball.png").convert_alpha()
         # Initialize the coordinates with arrays -> [528, 528, 528, 528] for length == 4 and SIZE = 48
+        #TODO Encapsuler ça
         self.x = [528] * self._length
         self.y = [384] * self._length
         self.direction = constants.DIRECTIONS[random.randint(0, 3)]
@@ -66,6 +67,32 @@ class Snake:
             self.x[0] += constants.BLOCK_SIZE
 
         self.draw()
+
+    def is_colliding_object(self, x, y):
+        """
+        :param x: Object's x coordinate
+        :param y: Object's y coordinate
+        :return: True if the snake's head's coordinates are the same has object's coordinates
+        """
+        if x <= self.x[0] == x and self.y[0] == y:
+            return True
+        return False
+
+    def is_colliding_wall_x(self):
+        """
+        :return: True if the snake's head's x coordinate overstep the window's dimensions
+        """
+        if self.x[0] > constants.WINDOW_WIDTH - constants.BLOCK_SIZE or self.x[0] < 0:
+            return True
+        return False
+
+    def is_colliding_wall_y(self):
+        """
+        :return: True if the snake's head's y coordinate overstep the window's dimensions
+        """
+        if self.y[0] > constants.WINDOW_LENGTH - constants.BLOCK_SIZE or self.y[0] < 0:
+            return True
+        return False
 
     def increase_length(self):
         """Increase the snake's length by 1"""
