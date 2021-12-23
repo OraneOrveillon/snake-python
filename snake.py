@@ -16,36 +16,35 @@ class Snake:
         """
         self._length = 1
         self._speed = constants.SNAKE_SPEED
-        self.parent_screen = parent_screen
+        self._parent_screen = parent_screen
         # Load the image
-        self.block = pygame.image.load("resources/snowball.png").convert_alpha()
+        self._block = pygame.image.load("resources/snowball.png").convert_alpha()
         # Initialize the coordinates with arrays -> [528, 528, 528, 528] for length == 4 and SIZE = 48
-        #TODO Encapsuler ça
-        self.x = [528] * self._length
-        self.y = [384] * self._length
-        self.direction = constants.DIRECTIONS[random.randint(0, 3)]
+        self._x = [528] * self._length
+        self._y = [384] * self._length
+        self._direction = constants.DIRECTIONS[random.randint(0, 3)]
 
     def draw(self):
         """Draw all snake's blocks at corresponding positions"""
         for i in range(self._length):
-            self.parent_screen.blit(self.block, (self.x[i], self.y[i]))
+            self._parent_screen.blit(self._block, (self._x[i], self._y[i]))
         pygame.display.flip()
 
     def move_up(self):
         """Change the snake's direction to up"""
-        self.direction = constants.DIRECTIONS[0]
+        self._direction = constants.DIRECTIONS[0]
 
     def move_down(self):
         """Change the snake's direction to down"""
-        self.direction = constants.DIRECTIONS[1]
+        self._direction = constants.DIRECTIONS[1]
 
     def move_left(self):
         """Change the snake's direction to left"""
-        self.direction = constants.DIRECTIONS[2]
+        self._direction = constants.DIRECTIONS[2]
 
     def move_right(self):
         """Change the snake's direction to right"""
-        self.direction = constants.DIRECTIONS[3]
+        self._direction = constants.DIRECTIONS[3]
 
     def walk(self):
         """
@@ -54,17 +53,17 @@ class Snake:
         Redraw it with the new coordinates
         """
         for i in range(self._length - 1, 0, -1):
-            self.x[i] = self.x[i - 1]
-            self.y[i] = self.y[i - 1]
+            self._x[i] = self._x[i - 1]
+            self._y[i] = self._y[i - 1]
 
-        if self.direction == constants.DIRECTIONS[0]:
-            self.y[0] -= constants.BLOCK_SIZE
-        if self.direction == constants.DIRECTIONS[1]:
-            self.y[0] += constants.BLOCK_SIZE
-        if self.direction == constants.DIRECTIONS[2]:
-            self.x[0] -= constants.BLOCK_SIZE
-        if self.direction == constants.DIRECTIONS[3]:
-            self.x[0] += constants.BLOCK_SIZE
+        if self._direction == constants.DIRECTIONS[0]:
+            self._y[0] -= constants.BLOCK_SIZE
+        if self._direction == constants.DIRECTIONS[1]:
+            self._y[0] += constants.BLOCK_SIZE
+        if self._direction == constants.DIRECTIONS[2]:
+            self._x[0] -= constants.BLOCK_SIZE
+        if self._direction == constants.DIRECTIONS[3]:
+            self._x[0] += constants.BLOCK_SIZE
 
         self.draw()
 
@@ -74,7 +73,7 @@ class Snake:
         :param y: Object's y coordinate
         :return: True if the snake's head's coordinates are the same has object's coordinates
         """
-        if x <= self.x[0] == x and self.y[0] == y:
+        if x <= self._x[0] == x and self._y[0] == y:
             return True
         return False
 
@@ -82,7 +81,7 @@ class Snake:
         """
         :return: True if the snake's head's x coordinate overstep the window's dimensions
         """
-        if self.x[0] > constants.WINDOW_WIDTH - constants.BLOCK_SIZE or self.x[0] < 0:
+        if self._x[0] > constants.WINDOW_WIDTH - constants.BLOCK_SIZE or self._x[0] < 0:
             return True
         return False
 
@@ -90,17 +89,25 @@ class Snake:
         """
         :return: True if the snake's head's y coordinate overstep the window's dimensions
         """
-        if self.y[0] > constants.WINDOW_LENGTH - constants.BLOCK_SIZE or self.y[0] < 0:
+        if self._y[0] > constants.WINDOW_LENGTH - constants.BLOCK_SIZE or self._y[0] < 0:
             return True
         return False
 
     def increase_length(self):
         """Increase the snake's length by 1"""
         self._length += 1
-        self.x.append(-1)
-        self.y.append(-1)
+        self._x.append(-1)
+        self._y.append(-1)
 
     # ---------- GETTERS / SETTERS SPACE ---------- #
+    @property
+    def x(self):
+        return self._x
+
+    @property
+    def y(self):
+        return self._y
+
     @property
     def length(self):
         return self._length
