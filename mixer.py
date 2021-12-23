@@ -22,3 +22,10 @@ class Mixer:
         """
         pygame.mixer.music.load("resources/jingle-bells.mp3")
         pygame.mixer.music.play()
+
+    @staticmethod
+    def pause_background_music():
+        """
+        Pause the background music with pygame's mixer
+        """
+        pygame.mixer.music.pause()

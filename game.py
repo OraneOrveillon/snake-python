@@ -43,7 +43,7 @@ class Game:
                     # Restart the game
                     if event.key == K_RETURN:
                         # Restart the music
-                        pygame.mixer.music.unpause()
+                        self._mixer.play_background_music()
                         # Un pause the game
                         pause = False
 
@@ -135,7 +135,7 @@ class Game:
         # Update the window
         pygame.display.flip()
         # Stop playing the background music
-        pygame.mixer.music.pause()
+        self._mixer.pause_background_music()
 
     def reset(self):
         """Restart the game"""
