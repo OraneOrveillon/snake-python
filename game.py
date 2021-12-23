@@ -119,19 +119,25 @@ class Game:
 
     def display_score(self):
         """Display the actual score on the screen"""
-        font = pygame.font.SysFont('arial', 30)
-        score = font.render("Score : {}".format(self._snake.length), True, (200, 200, 200))
-        self._window.blit(score, (800, 10))
+        font = pygame.font.SysFont('impact', 50)
+        text = font.render("Score : {}".format(self._snake.length), True, (97, 132, 227))
+        text_width = text.get_width()
+        self._window.blit(text, (constants.WINDOW_WIDTH / 2 - text_width / 2, 15))
 
     def show_game_over(self):
         """Display the Game Over interface"""
         # Clear the surface
         self.render_background()
-        font = pygame.font.SysFont('arial', 30)
-        line1 = font.render("Game Over ! Your score is {}".format(self._snake.length), True, (200, 200, 200))
-        self._window.blit(line1, (200, 300))
-        line2 = font.render("To play the game again press Enter.", True, (220, 220, 220))
-        self._window.blit(line2, (200, 350))
+        font = pygame.font.SysFont('impact', 50)
+        game_over_text = font.render("Game Over !", True, (97, 132, 227))
+        game_over_text_width = game_over_text.get_width()
+        self._window.blit(game_over_text, (constants.WINDOW_WIDTH / 2 - game_over_text_width / 2, 300))
+        score_text = font.render("Your score : {}".format(self._snake.length), True, (97, 132, 227))
+        score_text_width = score_text.get_width()
+        self._window.blit(score_text, (constants.WINDOW_WIDTH / 2 - score_text_width / 2, 350))
+        try_again_text = font.render("Press Enter to try again", True, (97, 132, 227))
+        try_again_text_width = try_again_text.get_width()
+        self._window.blit(try_again_text, (constants.WINDOW_WIDTH / 2 - try_again_text_width / 2, 400))
         # Update the window
         pygame.display.flip()
         # Stop playing the background music
