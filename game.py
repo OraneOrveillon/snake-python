@@ -90,7 +90,7 @@ class Game:
         pygame.display.flip()
 
         # If the snake's head is touching the apple
-        if self.is_colliding(self._apple.x, self._apple.y):
+        if self.is_colliding_object(self._apple.x, self._apple.y):
             # Play the sound corresponding to eating an apple
             self._mixer.play_sound("ding")
             # Increasing snake's length and continue moving
@@ -100,14 +100,13 @@ class Game:
         # If the snake's head is touching its body -> Game over
         # Starting at index 1 because the snake cannot collide its ows head
         for i in range(1, self._snake.length):
-            if self.is_colliding(self._snake.x[i], self._snake.y[i]):
+            if self.is_colliding_object(self._snake.x[i], self._snake.y[i]):
                 # Play the sound corresponding to colliding its own body
                 self._mixer.play_sound("crash")
                 raise Exception("Collision Occurred")
 
         # If the snake's head is touching a wall -> Game over
-        if (self._snake.x[0] > constants.WINDOW_WIDTH - constants.BLOCK_SIZE or self._snake.x[0] < 0) or \
-                (self._snake.y[0] > constants.WINDOW_LENGTH - constants.BLOCK_SIZE or self._snake.y[0] < 0):
+        if self.is_colliding_wall_x() or self.is_colliding_wall_y():
             self._mixer.play_sound("crash")
             raise Exception("Collision Occurred")
 
@@ -118,15 +117,30 @@ class Game:
         # Single color background (temporary)
         self._window.fill((7, 26, 48))
 
-    def is_colliding(self, x, y):
+    def is_colliding_object(self, x, y):
         """
         :param x: Object's x coordinate
         :param y: Object's y coordinate
-        :return: True if the snake's head is entering in the object's dimensions
+        :return: True if the snake's head's coordinates are the same has object's coordinates
         """
-        if x <= self._snake.x[0] < x + constants.BLOCK_SIZE:
-            if y <= self._snake.y[0] < y + constants.BLOCK_SIZE:
-                return True
+        if x <= self._snake.x[0] == x and self._snake.y[0] == y:
+            return True
+        return False
+
+    def is_colliding_wall_x(self):
+        """
+        :return: True if the snake's head's x coordinate overstep the window's dimensions
+        """
+        if self._snake.x[0] > constants.WINDOW_WIDTH - constants.BLOCK_SIZE or self._snake.x[0] < 0:
+            return True
+        return False
+
+    def is_colliding_wall_y(self):
+        """
+        :return: True if the snake's head's y coordinate overstep the window's dimensions
+        """
+        if self._snake.y[0] > constants.WINDOW_LENGTH - constants.BLOCK_SIZE or self._snake.y[0] < 0:
+            return True
         return False
 
     def display_score(self):
