@@ -19,9 +19,8 @@ class Snake:
         self._parent_screen = parent_screen
         # Load the image
         self._block = pygame.image.load("resources/snowball.png").convert_alpha()
-        # Initialize the coordinates with arrays -> [528, 528, 528, 528] for length == 4 and SIZE = 48
-        self._x = [528] * self._length
-        self._y = [384] * self._length
+        self._x = [constants.WIDTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
+        self._y = [constants.LENGTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
         self._direction = constants.DIRECTIONS[random.randint(0, 3)]
 
     def draw(self):
