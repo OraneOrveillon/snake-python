@@ -96,7 +96,10 @@ class Game:
             self._mixer.play_sound("ding")
             # Increasing snake's length and continue moving
             self._snake.increase_length()
+            # Move the apple and continue doing it while it is on the snake's body
             self._apple.move()
+            while self._snake.is_colliding_object_body(self._apple.x, self._apple.y):
+                self._apple.move()
 
         # If the snake's head is touching its body -> Game over
         # Starting at index 1 because the snake cannot collide its ows head

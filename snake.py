@@ -77,6 +77,18 @@ class Snake:
             return True
         return False
 
+    def is_colliding_object_body(self, x, y):
+        """
+        Works the same as is_colliding_object but for the whole snake's body
+        :param x: Object's x coordinate
+        :param y: Object's y coordinate
+        :return: True if the snake's body's coordinates are the same has object's coordinates
+        """
+        for i in range(self._length):
+            if self._x[i] == x and self._y[i] == y:
+                return True
+        return False
+
     def is_colliding_wall_x(self):
         """
         :return: True if the snake's head's x coordinate overstep the window's dimensions
