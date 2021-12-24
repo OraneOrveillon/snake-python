@@ -15,8 +15,6 @@ class Apple:
         """
         self._image = pygame.image.load("resources/snowflake.png").convert_alpha()
         self._parent_screen = parent_screen
-        # self._x = constants.SNAKE_SIZE * 3
-        # self._y = constants.SNAKE_SIZE * 3
         self._x = self._y = 0
         self.move()
 
