@@ -18,6 +18,7 @@ class Game:
         - Initialize pygame library
         - Create the window with its dimensions
         - Create and draw an snake and an apple
+        - Set the pause state at False
         """
         self._mixer = Mixer()
         self._mixer.play_background_music()
@@ -27,13 +28,13 @@ class Game:
         self._snake.draw()
         self._apple = Apple(self._window)
         self._apple.draw()
+        self._pause = False
 
     def run(self):
         """Keep the game running until the game over state or when the window is closed"""
         # Keep the window running until it is closed
         # Moves the blocks when a direction key is pressed
         running = True
-        pause = False
 
         while running:
             for event in pygame.event.get():
@@ -46,10 +47,12 @@ class Game:
                         # Restart the music
                         self._mixer.play_background_music()
                         # Un pause the game
-                        pause = False
+                        self._pause = False
+                        # Reset the game
+                        self.reset()
 
                     # Move the snake following the direction's key
-                    if not pause:
+                    if not self._pause:
                         if event.key == K_UP:
                             self._snake.move_up()
 
@@ -66,13 +69,10 @@ class Game:
                 elif event.type == QUIT:
                     running = False
 
-            try:
-                if not pause:
-                    self.play()
-            except Exception:
+            if not self._pause:
+                self.play()
+            else:
                 self.show_game_over()
-                pause = True
-                self.reset()
 
             # Basically the snake's speed
             time.sleep(self._snake.speed)
@@ -107,12 +107,12 @@ class Game:
             if self._snake.is_colliding_object(self._snake.x[i], self._snake.y[i]):
                 # Play the sound corresponding to colliding its own body
                 self._mixer.play_sound("crash")
-                raise Exception("Collision Occurred")
+                self._pause = True
 
         # If the snake's head is touching a wall -> Game over
         if self._snake.is_colliding_wall_x() or self._snake.is_colliding_wall_y():
             self._mixer.play_sound("crash")
-            raise Exception("Collision Occurred")
+            self._pause = True
 
     def render_background(self):
         """Regenerate the background at 0,0 position"""
