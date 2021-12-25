@@ -9,7 +9,7 @@ class Snake:
     def __init__(self, parent_screen):
         """
         - Start with a length of 1 and the speed defined in constants.py
-        - Load the snake image
+        - Load the snake images for the head and for the body
         - Initialize it's first coordinates x, y at the middle of the screen
         - Start at a random direction
         :param parent_screen: The parent window
@@ -17,16 +17,19 @@ class Snake:
         self._length = 1
         self._speed = constants.SNAKE_SPEED
         self._parent_screen = parent_screen
-        # Load the image
-        self._block = pygame.image.load("resources/snowball.png").convert_alpha()
+        self._head_block = pygame.image.load("resources/blue-ball.png").convert_alpha()
+        self._body_block = pygame.image.load("resources/snowball.png").convert_alpha()
         self._x = [constants.WIDTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
         self._y = [constants.LENGTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
         self._direction = constants.DIRECTIONS[random.randint(0, 3)]
 
     def draw(self):
         """Draw all snake's blocks at corresponding positions"""
-        for i in range(self._length):
-            self._parent_screen.blit(self._block, (self._x[i], self._y[i]))
+        # Snake's head
+        self._parent_screen.blit(self._head_block, (self._x[0], self._y[0]))
+        # Snake's body
+        for i in range(1, self._length):
+            self._parent_screen.blit(self._body_block, (self._x[i], self._y[i]))
         pygame.display.flip()
 
     def move_up(self):
