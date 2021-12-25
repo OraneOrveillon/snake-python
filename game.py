@@ -120,6 +120,15 @@ class Game:
         self._window.blit(background, (0, 0))
         # Single color background (temporary)
         self._window.fill((7, 26, 48))
+        self.draw_grid()
+
+    def draw_grid(self):
+        """Draw a grid on the window"""
+        for i in range(0, constants.WINDOW_WIDTH, constants.BLOCK_SIZE):
+            pygame.draw.line(self._window, '#0E2F56', (i, 0), (i, constants.WINDOW_LENGTH))
+        for i in range(0, constants.WINDOW_LENGTH, constants.BLOCK_SIZE):
+            pygame.draw.line(self._window, '#0E2F56', (0, i), (constants.WINDOW_WIDTH, i))
+        pygame.display.flip()
 
     def display_score(self):
         """Display the actual score on the screen"""
