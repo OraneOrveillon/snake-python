@@ -27,6 +27,7 @@ class Game:
         self._snake.draw()
         self._apple = Apple(self._window)
         self._apple.draw()
+        pygame.draw.rect()
 
     def run(self):
         """Keep the game running until the game over state or when the window is closed"""

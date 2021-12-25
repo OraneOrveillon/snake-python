@@ -13,6 +13,7 @@ class Mixer:
         :param sound: The sound's filename
         """
         sound = pygame.mixer.Sound("resources/{}.mp3".format(sound))
+        sound.set_volume(0.25)
         pygame.mixer.Sound.play(sound)
 
     @staticmethod
@@ -21,6 +22,7 @@ class Mixer:
         Play a background music with pygame's mixer
         """
         pygame.mixer.music.load("resources/jingle-bells.mp3")
+        pygame.mixer.music.set_volume(0.25)
         pygame.mixer.music.play()
 
     @staticmethod

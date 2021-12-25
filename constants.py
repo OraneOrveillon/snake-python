@@ -10,7 +10,7 @@ LENGTH_COEFFICIENT = 18
 WINDOW_WIDTH = WIDTH_COEFFICIENT * BLOCK_SIZE
 WINDOW_LENGTH = LENGTH_COEFFICIENT * BLOCK_SIZE
 """The snake's move speed"""
-SNAKE_SPEED = 0.1
+SNAKE_SPEED = 0.075
 """The 4 directions taken by the snake"""
 DIRECTIONS = ('up', 'down', 'left', 'right')
 
