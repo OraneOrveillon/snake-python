@@ -11,17 +11,17 @@ class Snake:
         - Start with a length of 1 and the speed defined in constants.py
         - Load the snake images for the head and for the body
         - Initialize it's first coordinates x, y at the middle of the screen
-        - Start at a random direction
+        - Start with the up direction
         :param parent_screen: The parent window
         """
         self._length = 1
         self._speed = constants.SNAKE_SPEED
         self._parent_screen = parent_screen
-        self._head_block = pygame.image.load("resources/blue-ball.png").convert_alpha()
+        self._head_block = pygame.image.load("resources/snowball-head.png").convert_alpha()
         self._body_block = pygame.image.load("resources/snowball.png").convert_alpha()
         self._x = [constants.WIDTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
         self._y = [constants.LENGTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
-        self._direction = constants.DIRECTIONS[random.randint(0, 3)]
+        self._direction = constants.DIRECTIONS[0]
 
     def draw(self):
         """Draw all snake's blocks at corresponding positions"""
@@ -33,19 +33,47 @@ class Snake:
         pygame.display.flip()
 
     def move_up(self):
-        """Change the snake's direction to up"""
+        """Change the snake's direction and orient its head to to up"""
+        if self._direction == constants.DIRECTIONS[1]:
+            self._head_block = pygame.transform.rotate(self._head_block, 180)
+        if self._direction == constants.DIRECTIONS[2]:
+            self._head_block = pygame.transform.rotate(self._head_block, 270)
+        if self._direction == constants.DIRECTIONS[3]:
+            self._head_block = pygame.transform.rotate(self._head_block, 90)
+
         self._direction = constants.DIRECTIONS[0]
 
     def move_down(self):
-        """Change the snake's direction to down"""
+        """Change the snake's direction and orient its head to to down"""
+        if self._direction == constants.DIRECTIONS[0]:
+            self._head_block = pygame.transform.rotate(self._head_block, 180)
+        if self._direction == constants.DIRECTIONS[2]:
+            self._head_block = pygame.transform.rotate(self._head_block, 90)
+        if self._direction == constants.DIRECTIONS[3]:
+            self._head_block = pygame.transform.rotate(self._head_block, 270)
+
         self._direction = constants.DIRECTIONS[1]
 
     def move_left(self):
-        """Change the snake's direction to left"""
+        """Change the snake's direction and orient its head to left"""
+        if self._direction == constants.DIRECTIONS[0]:
+            self._head_block = pygame.transform.rotate(self._head_block, 90)
+        if self._direction == constants.DIRECTIONS[1]:
+            self._head_block = pygame.transform.rotate(self._head_block, 270)
+        if self._direction == constants.DIRECTIONS[3]:
+            self._head_block = pygame.transform.rotate(self._head_block, 180)
+
         self._direction = constants.DIRECTIONS[2]
 
     def move_right(self):
-        """Change the snake's direction to right"""
+        """Change the snake's direction and orient its head to to right"""
+        if self._direction == constants.DIRECTIONS[0]:
+            self._head_block = pygame.transform.rotate(self._head_block, 270)
+        if self._direction == constants.DIRECTIONS[1]:
+            self._head_block = pygame.transform.rotate(self._head_block, 90)
+        if self._direction == constants.DIRECTIONS[2]:
+            self._head_block = pygame.transform.rotate(self._head_block, 180)
+
         self._direction = constants.DIRECTIONS[3]
 
     def walk(self):

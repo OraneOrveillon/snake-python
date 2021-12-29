@@ -16,7 +16,7 @@ class Game:
         """
         - Create a mixer and start playing background music
         - Initialize pygame library
-        - Create the window with its dimensions
+        - Create the window with its dimensions and add a title
         - Create and draw an snake and an apple
         - Set the pause state at False
         """
@@ -24,6 +24,7 @@ class Game:
         self._mixer.play_background_music()
         pygame.init()
         self._window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
+        pygame.display.set_caption("Snake Python")
         self._snake = Snake(self._window)
         self._snake.draw()
         self._apple = Apple(self._window)
