@@ -116,7 +116,7 @@ class Game:
 
     def render_background(self):
         """Regenerate the background"""
-        self._window.fill((7, 26, 48))
+        self._window.fill('#071A30')
         self.draw_grid()
 
     def draw_grid(self):
@@ -129,7 +129,7 @@ class Game:
 
     def display_score(self):
         """Display the actual score on the screen"""
-        text = Text(self._window, 'impact', 50, "Score : {}".format(self._snake.length), (97, 132, 227))
+        text = Text(self._window, 'impact', 50, "Score : {}".format(self._snake.length), '#6184E3')
         text.display_text((constants.WINDOW_WIDTH / 2 - text.width / 2, 15))
 
     def show_game_over(self):
@@ -138,13 +138,13 @@ class Game:
         self.render_background()
 
         # Display the 3 texts
-        game_over_text = Text(self._window, 'impact', 50, "Game Over !", (97, 132, 227))
+        game_over_text = Text(self._window, 'impact', 50, "Game Over !", '#6184E3')
         game_over_text.display_text((constants.WINDOW_WIDTH / 2 - game_over_text.width / 2, 300))
 
-        score_text = Text(self._window, 'impact', 50, "Your score : {}".format(self._snake.length), (97, 132, 227))
+        score_text = Text(self._window, 'impact', 50, "Your score : {}".format(self._snake.length), '#6184E3')
         score_text.display_text((constants.WINDOW_WIDTH / 2 - score_text.width / 2, 350))
 
-        try_again_text = Text(self._window, 'impact', 50, "Press Enter to try again", (97, 132, 227))
+        try_again_text = Text(self._window, 'impact', 50, "Press Enter to try again", '#6184E3')
         try_again_text.display_text((constants.WINDOW_WIDTH / 2 - try_again_text.width / 2, 400))
 
         pygame.display.flip()
