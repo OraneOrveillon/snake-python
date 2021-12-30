@@ -21,7 +21,7 @@ class Snake:
         self._body_block = pygame.image.load("resources/snowball.png").convert_alpha()
         self._x = [constants.WIDTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
         self._y = [constants.LENGTH_COEFFICIENT / 2 * constants.BLOCK_SIZE]
-        self._direction = constants.DIRECTIONS[0]
+        self._direction = constants.UP
 
     def draw(self):
         """Draw all snake's blocks at corresponding positions"""
@@ -34,47 +34,47 @@ class Snake:
 
     def move_up(self):
         """Change the snake's direction and orient its head to to up"""
-        if self._direction == constants.DIRECTIONS[1]:
+        if self._direction == constants.DOWN:
             self._head_block = pygame.transform.rotate(self._head_block, 180)
-        if self._direction == constants.DIRECTIONS[2]:
+        if self._direction == constants.LEFT:
             self._head_block = pygame.transform.rotate(self._head_block, 270)
-        if self._direction == constants.DIRECTIONS[3]:
+        if self._direction == constants.RIGHT:
             self._head_block = pygame.transform.rotate(self._head_block, 90)
 
-        self._direction = constants.DIRECTIONS[0]
+        self._direction = constants.UP
 
     def move_down(self):
         """Change the snake's direction and orient its head to to down"""
-        if self._direction == constants.DIRECTIONS[0]:
+        if self._direction == constants.UP:
             self._head_block = pygame.transform.rotate(self._head_block, 180)
-        if self._direction == constants.DIRECTIONS[2]:
+        if self._direction == constants.LEFT:
             self._head_block = pygame.transform.rotate(self._head_block, 90)
-        if self._direction == constants.DIRECTIONS[3]:
+        if self._direction == constants.RIGHT:
             self._head_block = pygame.transform.rotate(self._head_block, 270)
 
-        self._direction = constants.DIRECTIONS[1]
+        self._direction = constants.DOWN
 
     def move_left(self):
         """Change the snake's direction and orient its head to left"""
-        if self._direction == constants.DIRECTIONS[0]:
+        if self._direction == constants.UP:
             self._head_block = pygame.transform.rotate(self._head_block, 90)
-        if self._direction == constants.DIRECTIONS[1]:
+        if self._direction == constants.DOWN:
             self._head_block = pygame.transform.rotate(self._head_block, 270)
-        if self._direction == constants.DIRECTIONS[3]:
+        if self._direction == constants.RIGHT:
             self._head_block = pygame.transform.rotate(self._head_block, 180)
 
-        self._direction = constants.DIRECTIONS[2]
+        self._direction = constants.LEFT
 
     def move_right(self):
         """Change the snake's direction and orient its head to to right"""
-        if self._direction == constants.DIRECTIONS[0]:
+        if self._direction == constants.UP:
             self._head_block = pygame.transform.rotate(self._head_block, 270)
-        if self._direction == constants.DIRECTIONS[1]:
+        if self._direction == constants.DOWN:
             self._head_block = pygame.transform.rotate(self._head_block, 90)
-        if self._direction == constants.DIRECTIONS[2]:
+        if self._direction == constants.LEFT:
             self._head_block = pygame.transform.rotate(self._head_block, 180)
 
-        self._direction = constants.DIRECTIONS[3]
+        self._direction = constants.RIGHT
 
     def walk(self):
         """
@@ -86,13 +86,13 @@ class Snake:
             self._x[i] = self._x[i - 1]
             self._y[i] = self._y[i - 1]
 
-        if self._direction == constants.DIRECTIONS[0]:
+        if self._direction == constants.UP:
             self._y[0] -= constants.BLOCK_SIZE
-        if self._direction == constants.DIRECTIONS[1]:
+        if self._direction == constants.DOWN:
             self._y[0] += constants.BLOCK_SIZE
-        if self._direction == constants.DIRECTIONS[2]:
+        if self._direction == constants.LEFT:
             self._x[0] -= constants.BLOCK_SIZE
-        if self._direction == constants.DIRECTIONS[3]:
+        if self._direction == constants.RIGHT:
             self._x[0] += constants.BLOCK_SIZE
 
         self.draw()
