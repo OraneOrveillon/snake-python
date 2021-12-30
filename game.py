@@ -95,7 +95,6 @@ class Game:
         if self._snake.is_colliding_object(self._apple.x, self._apple.y):
             # Play the sound corresponding to eating an apple
             self._mixer.play_sound("ding")
-            # Increasing snake's length and continue moving
             self._snake.increase_length()
             # Move the apple and continue doing it while it is on the snake's body
             self._apple.move()
@@ -103,7 +102,7 @@ class Game:
                 self._apple.move()
 
         # If the snake's head is touching its body -> Game over
-        # Starting at index 1 because the snake cannot collide its ows head
+        # Starting at index 1 because the snake cannot collide its own head
         for i in range(1, self._snake.length):
             if self._snake.is_colliding_object(self._snake.x[i], self._snake.y[i]):
                 # Play the sound corresponding to colliding its own body
@@ -116,10 +115,7 @@ class Game:
             self._pause = True
 
     def render_background(self):
-        """Regenerate the background at 0,0 position"""
-        background = pygame.image.load("resources/background.jpg")
-        self._window.blit(background, (0, 0))
-        # Single color background (temporary)
+        """Regenerate the background"""
         self._window.fill((7, 26, 48))
         self.draw_grid()
 
@@ -151,13 +147,11 @@ class Game:
         try_again_text = Text(self._window, 'impact', 50, "Press Enter to try again", (97, 132, 227))
         try_again_text.display_text((constants.WINDOW_WIDTH / 2 - try_again_text.width / 2, 400))
 
-        # Update the window
         pygame.display.flip()
         # Stop playing the background music
         self._mixer.pause_background_music()
 
     def reset(self):
         """Restart the game"""
-        # Recreate a new snake and a new apple
         self._snake = Snake(self._window)
         self._apple = Apple(self._window)
