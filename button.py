@@ -17,19 +17,23 @@ class Button:
 
     def draw(self):
         rect_button = pygame.Rect(self._x, self._y, consts.BUTTON_WIDTH, consts.BUTTON_HEIGHT)
-        pygame.draw.rect(self._parent_screen, consts.BUTTON_COLOR, rect_button)
+        pygame.draw.rect(self._parent_screen,
+                         (consts.BUTTON_COLOR, consts.SELECTED_BUTTON_COLOR)[self._selected],
+                         rect_button)
         text_button = Text(
             self._parent_screen,
             consts.BUTTON_FONT_NAME,
             consts.BUTTON_FONT_SIZE,
             self._text,
-            consts.BUTTON_FONT_COLOR)
+            (consts.BUTTON_FONT_COLOR, consts.SELECTED_BUTTON_FONT_COLOR)[self._selected])
         text_button.display_text((
             rect_button.centerx - text_button.width / 2,
             rect_button.centery - text_button.height / 2))
 
+        pygame.display.flip()
+
     def set_selected(self):
-        self._selected = True
+        self._selected = not self._selected
         self.draw()
 
     def __eq__(self, button):

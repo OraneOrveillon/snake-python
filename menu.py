@@ -29,23 +29,10 @@ class Menu:
                                 "SCORES")
                          )
 
-        pygame.display.flip()
+        self._selected_button = 0
+        self._buttons[self._selected_button].set_selected()
 
-    def draw_button(self, x, y, width, height, text):
-        rect_button = Rect(x, y, width, height)
-        pygame.draw.rect(self._window, consts.BUTTON_COLOR, rect_button)
-        text_button = Text(
-            self._window,
-            consts.BUTTON_FONT_NAME,
-            consts.BUTTON_FONT_SIZE,
-            text,
-            consts.BUTTON_FONT_COLOR)
-        text_button.display_text((
-            rect_button.centerx - text_button.width / 2,
-            rect_button.centery - text_button.height / 2))
-
-    @staticmethod
-    def run():
+    def run(self):
         running = True
         while running:
             for event in pygame.event.get():
@@ -53,7 +40,16 @@ class Menu:
                     # Closed with escape key
                     if event.key == K_ESCAPE:
                         running = False
-                    # Restart the game
+                    if event.key == K_UP:
+                        if self._selected_button > 0:
+                            self._buttons[self._selected_button].set_selected()
+                            self._selected_button -= 1
+                            self._buttons[self._selected_button].set_selected()
+                    if event.key == K_DOWN:
+                        if self._selected_button < len(self._buttons) - 1:
+                            self._buttons[self._selected_button].set_selected()
+                            self._selected_button += 1
+                            self._buttons[self._selected_button].set_selected()
                 elif event.type == QUIT:
                     running = False
 
