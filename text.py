@@ -1,9 +1,9 @@
 import pygame
-import constants
+import consts
 
 
 class Text:
-    def __init__(self, parent_screen, font_name, size, content, rgb_color):
+    def __init__(self, parent_screen, font_name, size, content, color):
         """
         - Generate a pygame object font with given parameters
         - Generate a pygame object text with given parameters
@@ -12,15 +12,15 @@ class Text:
         :param font_name: The font name ('arial', etc)
         :param size: The font size
         :param content: The string that will be displayed on the window
-        :param rgb_color: The text's color in the (255, 255, 255) format
+        :param color: The text's color in the (255, 255, 255) format
         """
         self._parent_screen = parent_screen
         self._font_name = font_name
         self._size = size
         self._font = pygame.font.SysFont(font_name, size)
         self._content = content
-        self._rgb_color = rgb_color
-        self._text = self._font.render(content, True, rgb_color)
+        self._color = color
+        self._text = self._font.render(content, True, color)
         self._width = self._text.get_width()
         self._height = self._text.get_height()
 
@@ -48,7 +48,7 @@ class Text:
 
     def regenerate_text(self):
         """Regenerate the text, called when 1 or more attributes are changed"""
-        self._text = self._font.render(self._content, True, self._rgb_color)
+        self._text = self._font.render(self._content, True, self._color)
 
     # ---------- GETTERS / SETTERS SPACE ---------- #
     @property

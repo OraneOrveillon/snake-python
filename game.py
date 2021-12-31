@@ -6,7 +6,7 @@ from snake import Snake
 from apple import Apple
 from mixer import Mixer
 from text import Text
-import constants
+import consts
 
 
 class Game:
@@ -23,7 +23,7 @@ class Game:
         self._mixer = Mixer()
         self._mixer.play_background_music()
         pygame.init()
-        self._window = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_LENGTH))
+        self._window = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
         pygame.display.set_caption("Snake Python")
         self._snake = Snake(self._window)
         self._snake.draw()
@@ -121,16 +121,16 @@ class Game:
 
     def draw_grid(self):
         """Draw a grid on the window"""
-        for i in range(0, constants.WINDOW_WIDTH, constants.BLOCK_SIZE):
-            pygame.draw.line(self._window, '#0E2F56', (i, 0), (i, constants.WINDOW_LENGTH))
-        for i in range(0, constants.WINDOW_LENGTH, constants.BLOCK_SIZE):
-            pygame.draw.line(self._window, '#0E2F56', (0, i), (constants.WINDOW_WIDTH, i))
+        for i in range(0, consts.WINDOW_WIDTH, consts.BLOCK_SIZE):
+            pygame.draw.line(self._window, '#0E2F56', (i, 0), (i, consts.WINDOW_HEIGHT))
+        for i in range(0, consts.WINDOW_HEIGHT, consts.BLOCK_SIZE):
+            pygame.draw.line(self._window, '#0E2F56', (0, i), (consts.WINDOW_WIDTH, i))
         pygame.display.flip()
 
     def display_score(self):
         """Display the actual score on the screen"""
         text = Text(self._window, 'impact', 50, "Score : {}".format(self._snake.length), '#6184E3')
-        text.display_text((constants.WINDOW_WIDTH / 2 - text.width / 2, 15))
+        text.display_text((consts.WINDOW_WIDTH / 2 - text.width / 2, 15))
 
     def show_game_over(self):
         """Display the Game Over interface"""
@@ -139,13 +139,13 @@ class Game:
 
         # Display the 3 texts
         game_over_text = Text(self._window, 'impact', 50, "Game Over !", '#6184E3')
-        game_over_text.display_text((constants.WINDOW_WIDTH / 2 - game_over_text.width / 2, 300))
+        game_over_text.display_text((consts.WINDOW_WIDTH / 2 - game_over_text.width / 2, 300))
 
         score_text = Text(self._window, 'impact', 50, "Your score : {}".format(self._snake.length), '#6184E3')
-        score_text.display_text((constants.WINDOW_WIDTH / 2 - score_text.width / 2, 350))
+        score_text.display_text((consts.WINDOW_WIDTH / 2 - score_text.width / 2, 350))
 
         try_again_text = Text(self._window, 'impact', 50, "Press Enter to try again", '#6184E3')
-        try_again_text.display_text((constants.WINDOW_WIDTH / 2 - try_again_text.width / 2, 400))
+        try_again_text.display_text((consts.WINDOW_WIDTH / 2 - try_again_text.width / 2, 400))
 
         pygame.display.flip()
         # Stop playing the background music

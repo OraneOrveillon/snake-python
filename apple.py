@@ -1,7 +1,7 @@
 import pygame
 import random
 
-import constants
+import consts
 
 
 class Apple:
@@ -25,8 +25,8 @@ class Apple:
 
     def move(self):
         """Change apple's position randomly on the screen"""
-        self._x = random.randint(1, constants.WINDOW_WIDTH / constants.BLOCK_SIZE - 1) * constants.BLOCK_SIZE
-        self._y = random.randint(1, constants.WINDOW_LENGTH / constants.BLOCK_SIZE - 1) * constants.BLOCK_SIZE
+        self._x = random.randint(1, consts.WINDOW_WIDTH / consts.BLOCK_SIZE - 1) * consts.BLOCK_SIZE
+        self._y = random.randint(1, consts.WINDOW_HEIGHT / consts.BLOCK_SIZE - 1) * consts.BLOCK_SIZE
 
     # ---------- GETTERS / SETTERS SPACE ---------- #
     @property
