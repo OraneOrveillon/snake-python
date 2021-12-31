@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-from text import Text
+from button import Button
 import consts
 
 
@@ -15,21 +15,19 @@ class Menu:
         # Set background
         self._window.fill("#A04C76")
 
-        self.draw_button(consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                         consts.BUTTON1_Y,
-                         consts.BUTTON_WIDTH,
-                         consts.BUTTON_HEIGHT,
-                         "PLAY")
-        self.draw_button(consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                         consts.BUTTON2_Y,
-                         consts.BUTTON_WIDTH,
-                         consts.BUTTON_HEIGHT,
-                         "SETTINGS")
-        self.draw_button(consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                         consts.BUTTON3_Y,
-                         consts.BUTTON_WIDTH,
-                         consts.BUTTON_HEIGHT,
-                         "SCORES")
+        self._buttons = (Button(self._window,
+                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
+                                consts.BUTTON1_Y,
+                                "PLAY"),
+                         Button(self._window,
+                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
+                                consts.BUTTON2_Y,
+                                "SETTINGS"),
+                         Button(self._window,
+                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
+                                consts.BUTTON3_Y,
+                                "SCORES")
+                         )
 
         pygame.display.flip()
 
@@ -39,7 +37,8 @@ class Menu:
         text_button = Text(
             self._window,
             consts.BUTTON_FONT_NAME,
-            consts.BUTTON_FONT_SIZE, text,
+            consts.BUTTON_FONT_SIZE,
+            text,
             consts.BUTTON_FONT_COLOR)
         text_button.display_text((
             rect_button.centerx - text_button.width / 2,
