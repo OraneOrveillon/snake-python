@@ -3,6 +3,7 @@ import consts
 
 
 class Text:
+    """Enable to create and display texts on the window"""
     def __init__(self, parent_screen, font_name, size, content, color):
         """
         - Generate a pygame object font with given parameters
@@ -12,7 +13,7 @@ class Text:
         :param font_name: The font name ('arial', etc)
         :param size: The font size
         :param content: The string that will be displayed on the window
-        :param color: The text's color in the (255, 255, 255) format
+        :param color: The text's color
         """
         self._parent_screen = parent_screen
         self._font_name = font_name

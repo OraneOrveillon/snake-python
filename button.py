@@ -4,9 +4,19 @@ from text import Text
 import consts
 
 
-# TODO Docstring
 class Button:
+    """Enable to create buttons on the screen
+    Only visually, without associated commands
+    """
     def __init__(self, parent_screen, x, y, text):
+        """
+        - Initialize a button with given parameters and draw it on the screen
+        - Attribute _selected : If the button is selected or not by user
+        :param parent_screen: The parent window
+        :param x: X position
+        :param y: Y position
+        :param text: The text displayed on the button
+        """
         self._parent_screen = parent_screen
         self._x = x
         self._y = y
@@ -16,6 +26,14 @@ class Button:
         self.draw()
 
     def draw(self):
+        """
+        - Create a rectangle with x and y position and constants for width and height
+        - Draw the rectangle with a color given by a constant
+        - The given constant changes depending of the attribute _selected
+        - Create a text for the button
+        - Display the text at the center of the rectangle
+        - Update the screen
+        """
         rect_button = pygame.Rect(self._x, self._y, consts.BUTTON_WIDTH, consts.BUTTON_HEIGHT)
         pygame.draw.rect(self._parent_screen,
                          (consts.BUTTON_COLOR, consts.SELECTED_BUTTON_COLOR)[self._selected],
@@ -33,6 +51,7 @@ class Button:
         pygame.display.flip()
 
     def set_selected(self):
+        """Switch the selected state and redraw the button"""
         self._selected = not self._selected
         self.draw()
 

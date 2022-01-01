@@ -2,6 +2,7 @@ import pygame
 
 
 class Mixer:
+    """Deal with application's sounds and musics"""
     def __init__(self):
         """Initialize pygame's mixer"""
         pygame.mixer.init()
@@ -18,15 +19,15 @@ class Mixer:
         return sound
 
     @staticmethod
-    # TODO Docstring
     def stop_sound(sound):
+        """
+        Stop the sound currently playing
+        Used to better render sounds when several are played together"""
         sound.stop()
 
     @staticmethod
     def play_background_music():
-        """
-        Play a background music with pygame's mixer
-        """
+        """Play a background music with pygame's mixer"""
         pygame.mixer.music.load("assets/jingle-bells.mp3")
         pygame.mixer.music.set_volume(0.25)
         pygame.mixer.music.play()

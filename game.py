@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import time
 
+from interface import Interface
 from snake import Snake
 from apple import Apple
 from mixer import Mixer
@@ -9,9 +10,11 @@ from text import Text
 import consts
 
 
-class Game:
+# TODO Enlever le code qui est déjà présent dans Interface
+# TODO Enlever render background
+# TODO Mettre à jour la Docstring après la class Interface terminée
+class Game(Interface):
     """Deal with the functional aspects of the game"""
-
     def __init__(self):
         """
         - Create a mixer and start playing background music
@@ -20,11 +23,9 @@ class Game:
         - Create and draw an snake and an apple
         - Set the pause state at False
         """
+        super(Game, self).__init__()
         self._mixer = Mixer()
         self._mixer.play_background_music()
-        pygame.init()
-        self._window = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-        pygame.display.set_caption("Snake Python")
         self._snake = Snake(self._window)
         self._snake.draw()
         self._apple = Apple(self._window)
@@ -85,7 +86,8 @@ class Game:
         Check for snake's collisions :
             - length++ and move the apple if colliding the apple
             - game over if colliding its body or a wall"""
-        self.render_background()
+        self.render_background_color('#071A30')
+        self.draw_grid()
         self._snake.walk()
         self._apple.draw()
         self.display_score()
@@ -113,11 +115,6 @@ class Game:
             self._mixer.play_sound("crash.mp3")
             self._pause = True
 
-    def render_background(self):
-        """Regenerate the background"""
-        self._window.fill('#071A30')
-        self.draw_grid()
-
     def draw_grid(self):
         """Draw a grid on the window"""
         for i in range(0, consts.WINDOW_WIDTH, consts.BLOCK_SIZE):
@@ -135,7 +132,7 @@ class Game:
     def show_game_over(self):
         """Display the Game Over interface"""
         # Clear the surface
-        self.render_background()
+        self.render_background_color('#071A30')
 
         # Display the 3 texts
         game_over_text = Text(self._window, 'impact', 50, "Game Over !", '#6184E3')

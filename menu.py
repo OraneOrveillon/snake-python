@@ -12,14 +12,16 @@ import consts
 
 # TODO Docstring
 class Menu(Interface):
+    """
+    The menu interface
+    The element which is firstly displayed when the project is ran
+    Enables to access to the rest of the application
+    """
     def __init__(self):
-        # pygame.init()
-        # self._window = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-        # pygame.display.set_caption("Snake Python")
         super(Menu, self).__init__()
 
         # Set background
-        self._window.fill("#A04C76")
+        self.render_background_color("#A04C76")
 
         # Set title
         title = Text(self._window, 'impact', 150, "Snake", 'black')
