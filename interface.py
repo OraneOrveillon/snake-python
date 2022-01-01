@@ -8,6 +8,7 @@ import consts
 # TODO finir d'implémenter
 class Interface:
     def __init__(self):
+        """Initialize pygame, create the window with its dimensions and add a title"""
         pygame.init()
         self._window = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
         pygame.display.set_caption("Snake Python")

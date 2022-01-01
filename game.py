@@ -10,16 +10,12 @@ from text import Text
 import consts
 
 
-# TODO Enlever le code qui est déjà présent dans Interface
-# TODO Enlever render background
-# TODO Mettre à jour la Docstring après la class Interface terminée
 class Game(Interface):
     """Deal with the functional aspects of the game"""
     def __init__(self):
         """
+        - Call Interface constructor
         - Create a mixer and start playing background music
-        - Initialize pygame library
-        - Create the window with its dimensions and add a title
         - Create and draw an snake and an apple
         - Set the pause state at False
         """
