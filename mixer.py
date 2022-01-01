@@ -7,21 +7,27 @@ class Mixer:
         pygame.mixer.init()
 
     @staticmethod
-    def play_sound(sound):
+    def play_sound(sound_name):
         """
         Play a sound with pygame's mixer
-        :param sound: The sound's filename
+        :param sound_name: The sound's filename
         """
-        sound = pygame.mixer.Sound("resources/{}.mp3".format(sound))
+        sound = pygame.mixer.Sound("assets/{}".format(sound_name))
         sound.set_volume(0.25)
-        pygame.mixer.Sound.play(sound)
+        sound.play()
+        return sound
+
+    @staticmethod
+    # TODO Docstring
+    def stop_sound(sound):
+        sound.stop()
 
     @staticmethod
     def play_background_music():
         """
         Play a background music with pygame's mixer
         """
-        pygame.mixer.music.load("resources/jingle-bells.mp3")
+        pygame.mixer.music.load("assets/jingle-bells.mp3")
         pygame.mixer.music.set_volume(0.25)
         pygame.mixer.music.play()
 

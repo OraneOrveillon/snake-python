@@ -89,12 +89,11 @@ class Game:
         self._snake.walk()
         self._apple.draw()
         self.display_score()
-        pygame.display.flip()
 
         # If the snake's head is touching the apple
         if self._snake.is_colliding_object(self._apple.x, self._apple.y):
             # Play the sound corresponding to eating an apple
-            self._mixer.play_sound("ding")
+            self._mixer.play_sound("ding.mp3")
             self._snake.increase_length()
             # Move the apple and continue doing it while it is on the snake's body
             self._apple.move()
@@ -106,12 +105,12 @@ class Game:
         for i in range(1, self._snake.length):
             if self._snake.is_colliding_object(self._snake.x[i], self._snake.y[i]):
                 # Play the sound corresponding to colliding its own body
-                self._mixer.play_sound("crash")
+                self._mixer.play_sound("crash.mp3")
                 self._pause = True
 
         # If the snake's head is touching a wall -> Game over
         if self._snake.is_colliding_wall_x() or self._snake.is_colliding_wall_y():
-            self._mixer.play_sound("crash")
+            self._mixer.play_sound("crash.mp3")
             self._pause = True
 
     def render_background(self):
@@ -131,6 +130,7 @@ class Game:
         """Display the actual score on the screen"""
         text = Text(self._window, 'impact', 50, "Score : {}".format(self._snake.length), '#6184E3')
         text.display_text((consts.WINDOW_WIDTH / 2 - text.width / 2, 15))
+        pygame.display.flip()
 
     def show_game_over(self):
         """Display the Game Over interface"""

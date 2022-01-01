@@ -1,4 +1,4 @@
-from game import Game
+from menu import Menu
 
 if __name__ == '__main__':
     """Create a new game and run it"""
@@ -31,5 +31,5 @@ if __name__ == '__main__':
                     Developed by Orane
     """)
 
-    game = Game()
-    game.run()
+    menu = Menu()
+    menu.run()
