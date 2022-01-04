@@ -1,5 +1,4 @@
 import pygame
-import random
 
 import consts
 
@@ -17,8 +16,8 @@ class Snake:
         self._length = 1
         self._speed = consts.SNAKE_SPEED
         self._parent_screen = parent_screen
-        self._head_block = pygame.image.load("assets/snowball-head.png").convert_alpha()
-        self._body_block = pygame.image.load("assets/snowball.png").convert_alpha()
+        self._head_block = pygame.image.load("former-version/assets/snowball-head.png").convert_alpha()
+        self._body_block = pygame.image.load("former-version/assets/snowball.png").convert_alpha()
         self._x = [consts.WIDTH_COEFFICIENT / 2 * consts.BLOCK_SIZE]
         self._y = [consts.HEIGHT_COEFFICIENT / 2 * consts.BLOCK_SIZE]
         self._direction = consts.UP
