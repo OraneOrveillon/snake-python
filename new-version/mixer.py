@@ -28,7 +28,7 @@ class Mixer:
     @staticmethod
     def play_background_music():
         """Play a background music with pygame's mixer"""
-        pygame.mixer.music.load("/assets/jingle-bells.mp3")
+        pygame.mixer.music.load("assets/jingle-bells.mp3")
         pygame.mixer.music.set_volume(0.25)
         pygame.mixer.music.play()
 

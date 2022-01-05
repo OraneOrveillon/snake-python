@@ -1,5 +1,5 @@
-from pygame.locals import *
 import pygame
+from pygame.locals import *
 
 import consts
 from mixer import Mixer
