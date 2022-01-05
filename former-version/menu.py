@@ -29,16 +29,16 @@ class Menu(Interface):
 
         # Set buttons
         self._buttons = (Button(self._window,
-                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                                consts.BUTTON1_Y,
+                                consts.WINDOW_WIDTH / 2 - consts.MENU_BUTTON_WIDTH / 2,
+                                consts.MENU_BUTTON1_Y,
                                 "PLAY"),
                          Button(self._window,
-                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                                consts.BUTTON2_Y,
+                                consts.WINDOW_WIDTH / 2 - consts.MENU_BUTTON_WIDTH / 2,
+                                consts.MENU_BUTTON2_Y,
                                 "SETTINGS"),
                          Button(self._window,
-                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                                consts.BUTTON3_Y,
+                                consts.WINDOW_WIDTH / 2 - consts.MENU_BUTTON_WIDTH / 2,
+                                consts.MENU_BUTTON3_Y,
                                 "SCORES")
                          )
 

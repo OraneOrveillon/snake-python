@@ -13,16 +13,16 @@ class Menu:
         self._window = window
 
         self._buttons = (Button(self._window.screen,
-                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                                consts.BUTTON1_Y,
+                                consts.WINDOW_WIDTH / 2 - consts.MENU_BUTTON_WIDTH / 2,
+                                consts.MENU_BUTTON1_Y,
                                 "PLAY"),
                          Button(self._window.screen,
-                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                                consts.BUTTON2_Y,
+                                consts.WINDOW_WIDTH / 2 - consts.MENU_BUTTON_WIDTH / 2,
+                                consts.MENU_BUTTON2_Y,
                                 "SETTINGS"),
                          Button(self._window.screen,
-                                consts.WINDOW_WIDTH / 2 - consts.BUTTON_WIDTH / 2,
-                                consts.BUTTON3_Y,
+                                consts.WINDOW_WIDTH / 2 - consts.MENU_BUTTON_WIDTH / 2,
+                                consts.MENU_BUTTON3_Y,
                                 "SCORES")
                          )
 
@@ -36,7 +36,7 @@ class Menu:
         self._window.screen.fill("#A04C76")
 
         # Set title
-        title = Text(self._window.screen, 'impact', 150, "Snake", 'black')
+        title = Text(self._window.screen, consts.FONT_NAME, consts.MENU_TITLE_FONT_SIZE, "Snake", 'black')
         title.display_text((consts.WINDOW_WIDTH / 2 - title.width / 2, 20))
 
         # Set buttons

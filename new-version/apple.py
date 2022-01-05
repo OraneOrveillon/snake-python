@@ -9,8 +9,8 @@ class Apple:
 
     def __init__(self, parent_screen):
         """
-        - Load the apple image
-        - Initialize it's first coordinates x, y at 0, then move it to a random position with move()
+        - Loads the apple image
+        - Initializes it's first coordinates x, y at 0, then moves it to a random position with move()
         :param parent_screen: The parent window
         """
         self._image = pygame.image.load("assets/snowflake.png").convert_alpha()
@@ -19,11 +19,11 @@ class Apple:
         self.move()
 
     def draw(self):
-        """Make appear the apple image on the screen"""
+        """Makes appear the apple image on the screen"""
         self._parent_screen.blit(self._image, (self._x, self._y))
 
     def move(self):
-        """Change apple's position randomly on the screen"""
+        """Changes apple's position randomly on the screen"""
         self._x = random.randint(1, consts.WINDOW_WIDTH / consts.BLOCK_SIZE - 1) * consts.BLOCK_SIZE
         self._y = random.randint(1, consts.WINDOW_HEIGHT / consts.BLOCK_SIZE - 1) * consts.BLOCK_SIZE
 

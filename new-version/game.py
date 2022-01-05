@@ -113,13 +113,13 @@ class Game:
         self._window.screen.fill('#071A30')
 
         # Display the 3 texts
-        game_over_text = Text(self._window.screen, 'impact', 50, "Game Over !", '#6184E3')
+        game_over_text = Text(self._window.screen, consts.FONT_NAME, 50, "Game Over !", '#6184E3')
         game_over_text.display_text((consts.WINDOW_WIDTH / 2 - game_over_text.width / 2, 300))
 
-        score_text = Text(self._window.screen, 'impact', 50, "Your score : {}".format(self._snake.length), '#6184E3')
+        score_text = Text(self._window.screen, consts.FONT_NAME, 50, "Your score : {}".format(self._snake.length), '#6184E3')
         score_text.display_text((consts.WINDOW_WIDTH / 2 - score_text.width / 2, 350))
 
-        try_again_text = Text(self._window.screen, 'impact', 50, "Press Enter to try again", '#6184E3')
+        try_again_text = Text(self._window.screen, consts.FONT_NAME, 50, "Press Enter to try again", '#6184E3')
         try_again_text.display_text((consts.WINDOW_WIDTH / 2 - try_again_text.width / 2, 400))
 
         pygame.display.flip()

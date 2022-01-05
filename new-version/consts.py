@@ -18,18 +18,21 @@ UP = 'up'
 DOWN = 'down'
 LEFT = 'left'
 RIGHT = 'right'
-# TODO Docstring
-BUTTON_WIDTH = BLOCK_SIZE * 8
-BUTTON_HEIGHT = BLOCK_SIZE * 2
-BUTTON1_Y = BLOCK_SIZE * 5
-BUTTON2_Y = BLOCK_SIZE * 9
-BUTTON3_Y = BLOCK_SIZE * 13
-
+"""General font for texts"""
+FONT_NAME = 'impact'
+"""General parameters for buttons"""
 BUTTON_COLOR = 'white'
-BUTTON_FONT_NAME = 'impact'
-BUTTON_FONT_SIZE = 50
 BUTTON_FONT_COLOR = 'black'
 SELECTED_BUTTON_COLOR = '#484848'
 SELECTED_BUTTON_FONT_COLOR = 'white'
+"""Parameters for Menu's buttons (proportional to the rest window's dimensions)"""
+MENU_BUTTON_WIDTH = BLOCK_SIZE * 8
+MENU_BUTTON_HEIGHT = BLOCK_SIZE * 2
+MENU_BUTTON1_Y = BLOCK_SIZE * 5
+MENU_BUTTON2_Y = BLOCK_SIZE * 9
+MENU_BUTTON3_Y = BLOCK_SIZE * 13
+MENU_BUTTON_FONT_SIZE = BLOCK_SIZE
+"""Font size for Menu's title (proportional to the rest window's dimensions)"""
+MENU_TITLE_FONT_SIZE = BLOCK_SIZE * 3
 
 

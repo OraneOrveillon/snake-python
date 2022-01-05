@@ -34,14 +34,14 @@ class Button:
         - Display the text at the center of the rectangle
         - Update the screen
         """
-        rect_button = pygame.Rect(self._x, self._y, consts.BUTTON_WIDTH, consts.BUTTON_HEIGHT)
+        rect_button = pygame.Rect(self._x, self._y, consts.MENU_BUTTON_WIDTH, consts.MENU_BUTTON_HEIGHT)
         pygame.draw.rect(self._parent_screen,
                          (consts.BUTTON_COLOR, consts.SELECTED_BUTTON_COLOR)[self._selected],
                          rect_button)
         text_button = Text(
             self._parent_screen,
-            consts.BUTTON_FONT_NAME,
-            consts.BUTTON_FONT_SIZE,
+            consts.FONT_NAME,
+            consts.MENU_BUTTON_FONT_SIZE,
             self._text,
             (consts.BUTTON_FONT_COLOR, consts.SELECTED_BUTTON_FONT_COLOR)[self._selected])
         text_button.display_text((
