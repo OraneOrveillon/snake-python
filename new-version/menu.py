@@ -5,6 +5,7 @@ import consts
 from mixer import Mixer
 from text import Text
 from button import Button
+from game import Game
 
 
 class Menu:
@@ -70,6 +71,7 @@ class Menu:
                     if event.key == K_RETURN:
                         if self._selected_button == 0:
                             running = False
+                            self._window.game = Game(self._window)
                             self._window.game.draw()
                             self._window.game.run()
                 elif event.type == QUIT:

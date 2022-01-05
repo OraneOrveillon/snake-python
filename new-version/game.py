@@ -14,7 +14,6 @@ class Game:
         self._window = window
         self._snake = Snake(self._window.screen)
         self._apple = Apple(self._window.screen)
-        # TODO : Voir si c'est possible de mettre la variable en local dans run()
         self._pause = False
         self._mixer = Mixer()
 
@@ -32,14 +31,11 @@ class Game:
                     # Closed with escape key
                     if event.key == K_ESCAPE:
                         running = False
-                    # Restart the game
                     if event.key == K_RETURN:
-                        # Restart the music
-                        self._mixer.play_background_music()
-                        # Un pause the game
-                        self._pause = False
-                        # Reset the game
-                        self.reset()
+                        if self._pause:
+                            running = False
+                            self._window.menu.draw()
+                            self._window.menu.run()
 
                     # Move the snake following the direction's key
                     if not self._pause:
@@ -129,8 +125,3 @@ class Game:
         pygame.display.flip()
         # Stop playing the background music
         self._mixer.pause_background_music()
-
-    def reset(self):
-        """Restart the game"""
-        self._snake = Snake(self._window.screen)
-        self._apple = Apple(self._window.screen)
