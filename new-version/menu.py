@@ -9,7 +9,14 @@ from game import Game
 
 
 class Menu:
+    """Menu's interface"""
     def __init__(self, window):
+        """
+        - Initializes the buttons and put them in a tuple
+        - Initializes the mixer
+        - _selected_button is an index and is initialized at 0 : the first button "PLAY"
+        :param window: Application's window
+        """
         self._window = window
 
         self._buttons = (Button(self._window.screen,
@@ -32,24 +39,28 @@ class Menu:
         self._mixer = Mixer()
 
     def draw(self):
-        # Set background
+        """Set the background, the title and draws the buttons"""
         self._window.screen.fill("#A04C76")
 
-        # Set title
         title = Text(self._window.screen, consts.FONT_NAME, consts.MENU_TITLE_FONT_SIZE, "Snake", 'black')
         title.display_text((consts.WINDOW_WIDTH / 2 - title.width / 2, 20))
 
-        # Set buttons
         for i in range(len(self._buttons)):
             self._buttons[i].draw()
 
     def run(self):
+        """
+        - Keeps the window displaying until it's closed with Escape key or the cross
+        - When the up or down key is pressed, switched the selected button and plays the the corresponding sound
+        - Stops a sound before playing another to prevent from some sound glitches
+        - When Enter key is pressed, runs the corresponding interface
+        """
         running = True
         switch_sound = False
+
         while running:
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
-                    # Closed with escape key
                     if event.key == K_ESCAPE:
                         running = False
                     if event.key == K_UP:

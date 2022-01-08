@@ -7,10 +7,10 @@ class Snake:
     """The object that the player is going to control"""
     def __init__(self, parent_screen):
         """
-        - Start with a length of 1 and the speed defined in consts.py
-        - Load the snake images for the head and for the body
-        - Initialize it's first coordinates x, y at the middle of the screen
-        - Start with the up direction
+        - Starts with a length of 1 and the speed defined in consts.py
+        - Loads the snake images for the head and for the body
+        - Initializes it's first coordinates x, y at the middle of the screen
+        - Starts with the up direction
         :param parent_screen: The parent window
         """
         self._length = 1
@@ -23,7 +23,7 @@ class Snake:
         self._direction = consts.UP
 
     def draw(self):
-        """Draw all snake's blocks at corresponding positions"""
+        """Draws all snake's blocks at corresponding positions"""
         # Snake's head
         self._parent_screen.blit(self._head_block, (self._x[0], self._y[0]))
         # Snake's body
@@ -31,7 +31,7 @@ class Snake:
             self._parent_screen.blit(self._body_block, (self._x[i], self._y[i]))
 
     def move_up(self):
-        """Change the snake's direction and orient its head to to up"""
+        """Changes the snake's direction and orient its head to to up"""
         if self._direction == consts.DOWN:
             self._head_block = pygame.transform.rotate(self._head_block, 180)
         if self._direction == consts.LEFT:
@@ -42,7 +42,7 @@ class Snake:
         self._direction = consts.UP
 
     def move_down(self):
-        """Change the snake's direction and orient its head to to down"""
+        """Changes the snake's direction and orient its head to to down"""
         if self._direction == consts.UP:
             self._head_block = pygame.transform.rotate(self._head_block, 180)
         if self._direction == consts.LEFT:
@@ -53,7 +53,7 @@ class Snake:
         self._direction = consts.DOWN
 
     def move_left(self):
-        """Change the snake's direction and orient its head to left"""
+        """Changes the snake's direction and orient its head to left"""
         if self._direction == consts.UP:
             self._head_block = pygame.transform.rotate(self._head_block, 90)
         if self._direction == consts.DOWN:
@@ -64,7 +64,7 @@ class Snake:
         self._direction = consts.LEFT
 
     def move_right(self):
-        """Change the snake's direction and orient its head to to right"""
+        """Changes the snake's direction and orient its head to to right"""
         if self._direction == consts.UP:
             self._head_block = pygame.transform.rotate(self._head_block, 270)
         if self._direction == consts.DOWN:
@@ -76,9 +76,9 @@ class Snake:
 
     def walk(self):
         """
-        Increase the snake's length and change its block's position
+        Increases the snake's length and changes its block's position
         Each block takes the position of the previous one
-        Redraw it with the new coordinates
+        Redraws it with the new coordinates
         """
         for i in range(self._length - 1, 0, -1):
             self._x[i] = self._x[i - 1]
@@ -134,7 +134,7 @@ class Snake:
         return False
 
     def increase_length(self):
-        """Increase the snake's length by 1"""
+        """Increases the snake's length by 1"""
         self._length += 1
         self._x.append(-1)
         self._y.append(-1)

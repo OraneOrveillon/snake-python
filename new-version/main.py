@@ -1,7 +1,7 @@
 from window import Window
 
 if __name__ == '__main__':
-    """Create a new game and run it"""
+    """Creates a new window and runs it"""
 
     print("""
            /^\\/^\\
